@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise 💙</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top, #18002f, #000);
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== BRINCADEIRA INICIAL ===== */
+#intro {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #1b0038, #000);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  text-align: center;
+}
+
+#intro h1 {
+  font-size: 44px;
+  background: linear-gradient(90deg, #ff4fd8, #8a2be2, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+#intro p {
+  font-size: 18px;
+  opacity: 0.85;
+}
+
+#intro button {
+  margin-top: 30px;
+  padding: 16px 45px;
+  font-size: 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #ff4fd8, #8a2be2, #00ffff);
+  color: black;
+  box-shadow: 0 0 40px #ff4fd8;
+  transition: transform 0.3s;
+}
+
+#intro button:hover {
+  transform: scale(1.15);
+}
+
+/* ===== CONTEÚDO ===== */
+#content {
+  display: none;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 70px 20px;
+}
+
+.card {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(0,0,0,0.75);
+  padding: 45px;
+  border-radius: 30px;
+  border: 2px solid rgba(138,43,226,0.5);
+  box-shadow: 0 0 70px #8a2be2;
+}
+
+.card h2 {
+  text-align: center;
+  font-size: 42px;
+  margin-bottom: 35px;
+  background: linear-gradient(90deg, #ff4fd8, #8a2be2, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card p {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #e9e9ff;
+}
+
+/* ===== CORAÇÕES ===== */
+.heart {
+  position: absolute;
+  animation: heartFall linear infinite;
+  filter: drop-shadow(0 0 12px currentColor);
+}
+
+@keyframes heartFall {
+  from {
+    transform: translateY(-10vh) scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(120vh) scale(1.6) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+/* ===== BALÕES ===== */
+.balloon {
+  position: absolute;
+  width: 45px;
+  height: 60px;
+  border-radius: 50%;
+  animation: balloonFloat linear infinite;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 45px;
+  background: rgba(255,255,255,0.6);
+  left: 50%;
+  top: 60px;
+}
+
+@keyframes balloonFloat {
+  from { transform: translateY(120vh); }
+  to { transform: translateY(-140vh); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BRINCADEIRA -->
+<div id="intro">
+  <h1>💥 ALERT 💥</h1>
+  <p>This page contains extreme love levels</p>
+  <p>Proceed with caution 😏</p>
+  <button onclick="startSurprise()">I’m Ready 💙</button>
+</div>
+
+<!-- CONTEÚDO -->
+<div id="content">
+  <div class="card">
+    <h2>Happy Birthday, My Love 💙</h2>
+
+    <p>
+Happy birthday, my love 💙  
+Today my heart woke up even fuller of love, because today is your day. I want you to know how special you are to me, how your existence lights up my life, and how grateful I am to God for placing you in my path.<br><br>
+
+I wish you everything beautiful that life can offer: health, peace, love, achievements, dreams coming true, and countless reasons to smile. May every step you take be guided by hope, strength, and faith, and may you never lack the courage to go after what truly makes your heart happy. You deserve the world, James, and so much more.<br><br>
+
+May God bless you today and always, protect you in every moment, give you wisdom in your decisions, comfort you on difficult days, and joy in the simple ones. May He continue to take care of you, opening the right doors, closing the ones that don’t do you good, and filling your life with light.<br><br>
+
+Even with the distance between us, I want you to feel my love in every word, every thought, and every prayer I make for you. My heart is with you, cheering for you and believing in us. I truly believe that soon we will be together, celebrating not only birthdays, but every achievement, every hug, and every dream we will live side by side.<br><br>
+
+Thank you for being who you are, for your love, for your presence in my life, and for making my heart beat faster. May this new year bring you many blessings, growth, love, and unforgettable moments.<br><br>
+
+Happy life, happy new year, happy birthday, my love.<br>
+I love you today, tomorrow, and always 💕✨
+    </p>
+  </div>
+</div>
+
+<script>
+function startSurprise() {
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+  heartsParty();
+  balloonsParty();
+}
+
+/* MUITOS CORAÇÕES */
+function heartsParty() {
+  setInterval(() => {
+    for (let i = 0; i < 16; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.innerHTML = Math.random() > 0.5 ? '💖' : '💙';
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (18 + Math.random() * 30) + 'px';
+      h.style.color = Math.random() > 0.5 ? '#ff4fd8' : '#00ffff';
+      h.style.animationDuration = (4 + Math.random() * 4) + 's';
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 9000);
+    }
+  }, 260);
+}
+
+/* BALÕES COLORIDOS */
+function balloonsParty() {
+  const colors = ['#ff4fd8', '#00ffff', '#8a2be2'];
+
+  setInterval(() => {
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    b.style.left = Math.random() * 100 + 'vw';
+    b.style.background = `radial-gradient(circle at 30% 30%, #fff, ${colors[Math.floor(Math.random() * colors.length)]})`;
+    b.style.animationDuration = (6 + Math.random() * 6) + 's';
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 13000);
+  }, 320);
+}
+</script>
+
+</body>
+</html>
